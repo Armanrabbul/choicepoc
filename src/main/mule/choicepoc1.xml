@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="63c95d77-ae15-449a-9ac2-f7a0861b3e13" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="choicepoc1Flow" doc:id="309dad55-7a26-4443-ad9b-52c03b8d0e13" >
+		<http:listener doc:name="Listener" doc:id="d1258127-401b-48ba-b0e8-1e3cad4439cb" config-ref="HTTP_Listener_config" path="/test"/>
+		<logger level="INFO" doc:name="Logger" doc:id="9f386054-7cfb-4d97-8bb6-44fc678e14d8" message="start flow"/>
+		<choice doc:name="Choice" doc:id="16eac286-4f98-406d-b9c5-5a20bd1f862f" >
+			<when expression="1 != 1">
+				<logger level="INFO" doc:name="Logger" doc:id="9c582e01-7d53-4757-85e8-81fe592c59c5" />
+			</when>
+			<when expression="2 &gt; 4">
+				<logger level="INFO" doc:name="Logger" doc:id="39fc1e9c-a187-4e2c-ab51-fd85b7c8c027" />
+			</when>
+			<otherwise >
+				<logger level="INFO" doc:name="Logger" doc:id="efafea5e-c4d1-42ca-b008-518d6a62d1c1" />
+			</otherwise>
+		</choice>
+		<logger level="INFO" doc:name="Logger" doc:id="565708e8-1923-4df0-be55-a5935bc09c5a" message="end flow"/>
+	</flow>
+</mule>
